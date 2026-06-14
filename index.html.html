@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIAP NIKAH? | Analisis Kesiapan Pranikah</title>
+  <style>
+    :root {
+      --ivory: #fffaf0;
+      --cream: #f5ead7;
+      --gold: #c8a45d;
+      --gold-dark: #8d6d32;
+      --pink: #d8a6a1;
+      --pink-soft: #f2d8d5;
+      --ink: #332b27;
+      --muted: #766a60;
+      --line: rgba(91, 71, 49, 0.16);
+      --white: rgba(255, 255, 255, 0.78);
+      --shadow: 0 22px 60px rgba(87, 61, 40, 0.16);
+      --radius: 8px;
+      --green: #4c8b65;
+      --yellow: #b88736;
+      --red: #b95c55;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(255, 250, 240, 0.92), rgba(245, 234, 215, 0.86)),
+        url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1800&q=85") center/cover fixed;
+      min-height: 100vh;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .app-shell {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(216, 166, 161, 0.28), transparent 28%),
+        linear-gradient(180deg, rgba(255, 250, 240, 0.76), rgba(255, 250, 240, 0.94) 42%, rgba(245, 234, 215, 0.98));
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      background: rgba(255, 250, 240, 0.78);
+    }
+
+    nav {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      letter-spacing: 0;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      box-shadow: 0 10px 24px rgba(141, 109, 50, 0.24);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ghost-link {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.44);
+      color: var(--ink);
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: var(--radius);
+    }
+
+    main { overflow: hidden; }
+
+    .hero {
+      width: min(1120px, calc(100% - 32px));
+      min-height: calc(100vh - 68px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(310px, 0.68fr);
+      align-items: center;
+      gap: 48px;
+      padding: 42px 0 82px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold-dark);
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.6rem, 6vw, 5.9rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: #5f524a;
+      font-size: clamp(1.02rem, 2vw, 1.22rem);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      padding: 0 18px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      box-shadow: 0 18px 36px rgba(141, 109, 50, 0.25);
+    }
+    .btn-secondary {
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.54);
+    }
+    .btn-small {
+      min-height: 38px;
+      padding: 0 12px;
+      font-size: 0.9rem;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(51, 43, 39, 0.08), rgba(51, 43, 39, 0.56)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85") center/cover;
+    }
+
+    .hero-panel-content {
+      position: absolute;
+      inset: auto 20px 20px;
+      padding: 18px;
+      color: #fff;
+      background: rgba(51, 43, 39, 0.36);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-panel-content strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-panel-content span {
+      display: block;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .section {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 58px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      letter-spacing: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .step-tile, .form-card, .result-block, .flag-card, .conflict-card, .agreement-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 14px 38px rgba(87, 61, 40, 0.08);
+    }
+
+    .step-tile { padding: 20px; }
+    .step-number {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--pink);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .assessment {
+      display: none;
+      min-height: 100vh;
+      padding: 34px 0 66px;
+    }
+    .assessment.active { display: block; animation: fadeIn 0.35s ease both; }
+    .landing.hidden { display: none; }
+
+    .form-card {
+      width: min(880px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: clamp(18px, 4vw, 34px);
+      backdrop-filter: blur(18px);
+    }
+
+    .progress-shell {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(141, 109, 50, 0.14);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--gold));
+      transition: width 0.25s ease;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    label {
+      display: block;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.82);
+      color: var(--ink);
+      min-height: 48px;
+      padding: 12px 13px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(200, 164, 93, 0.82);
+      box-shadow: 0 0 0 4px rgba(200, 164, 93, 0.13);
+    }
+
+    .role-picker {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .role-option, .answer-option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.52);
+      transition: border 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .role-option:hover, .answer-option:hover { transform: translateY(-1px); }
+    .role-option input, .answer-option input {
+      width: 18px;
+      height: 18px;
+      min-height: auto;
+      accent-color: var(--gold-dark);
+    }
+    .role-option:has(input:checked), .answer-option:has(input:checked) {
+      border-color: rgba(200, 164, 93, 0.82);
+      background: rgba(248, 236, 211, 0.78);
+    }
+
+    .question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 16px 0 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(216, 166, 161, 0.22);
+      color: #7b4d48;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .question-text {
+      margin: 0 0 18px;
+      font-size: clamp(1.25rem, 2.4vw, 2rem);
+      line-height: 1.3;
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: 0;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .result-page {
+      display: none;
+      padding: 34px 0 68px;
+    }
+    .result-page.active { display: block; animation: fadeIn 0.35s ease both; }
+
+    .result-wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .result-hero {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.45fr) 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .score-card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(51, 43, 39, 0.94), rgba(107, 80, 53, 0.9));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .score-number {
+      display: block;
+      margin: 12px 0 8px;
+      font-size: clamp(4rem, 9vw, 7rem);
+      line-height: 0.88;
+      font-weight: 900;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .score-note { color: rgba(255, 255, 255, 0.78); line-height: 1.55; }
+
+    .result-block { padding: 24px; }
+
+    .flag-grid, .conflict-grid, .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .conflict-grid { grid-template-columns: repeat(5, 1fr); }
+    .topic-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .flag-card, .conflict-card, .agreement-card {
+      padding: 16px;
+      min-height: 100%;
+    }
+    .flag-card h3, .conflict-card h3, .agreement-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+    .flag-card ul, .topic-list, .conflict-card ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .green { border-top: 4px solid var(--green); }
+    .yellow { border-top: 4px solid var(--yellow); }
+    .red { border-top: 4px solid var(--red); }
+
+    .result-section { margin-top: 16px; }
+
+    .agreement-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .agreement-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.68);
+    }
+
+    .agreement-item input {
+      width: 18px;
+      height: 18px;
+      min-height: auto;
+      margin-top: 2px;
+      accent-color: var(--gold-dark);
+    }
+
+    .custom-agreement {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: rgba(51, 43, 39, 0.92);
+      color: #fff;
+      padding: 26px 16px;
+      text-align: center;
+    }
+    footer a { color: #f7ddb0; font-weight: 900; text-decoration: none; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(51, 43, 39, 0.94);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: all 0.25s ease;
+      z-index: 50;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 920px) {
+      .hero, .result-hero { grid-template-columns: 1fr; }
+      .hero { padding-top: 34px; }
+      .hero-panel { min-height: 360px; }
+      .steps, .flag-grid, .conflict-grid, .topic-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { width: min(100% - 24px, 1120px); }
+      .nav-actions .ghost-link { display: none; }
+      .hero, .section, .form-card, .result-wrap { width: min(100% - 24px, 1120px); }
+      .hero-actions, .nav-row { align-items: stretch; }
+      .hero-actions .btn, .nav-row .btn { width: 100%; }
+      .form-grid, .role-picker, .answers, .agreement-list, .custom-agreement { grid-template-columns: 1fr; }
+      .section-title { align-items: start; flex-direction: column; }
+      .progress-shell { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(2.45rem, 14vw, 4.2rem); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <nav>
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">♡</div>
+          <span>SIAP NIKAH?</span>
+        </div>
+        <div class="nav-actions">
+          <button class="ghost-link" type="button" data-scroll="#cara-kerja">Cara Kerja</button>
+          <button class="btn btn-primary btn-small" type="button" data-start>Mulai</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="landing" id="landing">
+        <div class="hero">
+          <div>
+            <div class="kicker">Analisis Kesiapan Pranikah</div>
+            <h1>Jangan Menikah Sebelum Membahas Hal-Hal Ini</h1>
+            <p class="lead">Banyak konflik rumah tangga terjadi bukan karena kurang cinta, tetapi karena terlalu banyak hal penting yang tidak pernah dibicarakan sebelum menikah.</p>
+            <p class="lead">Temukan potensi konflik, perbedaan prinsip, dan topik yang perlu didiskusikan bersama pasangan sebelum memasuki kehidupan pernikahan.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" type="button" data-start>Mulai Analisis</button>
+              <button class="btn btn-secondary" type="button" data-scroll="#cara-kerja">Cara Kerja</button>
+            </div>
+          </div>
+          <div class="hero-panel" aria-label="Pasangan sedang mempersiapkan pernikahan">
+            <div class="hero-panel-content">
+              <strong>Bukan kuis cinta biasa.</strong>
+              <span>Ini ruang diskusi untuk melihat nilai, batasan, risiko konflik, dan kesepakatan sebelum hidup bersama.</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="section" id="cara-kerja">
+          <div class="section-title">
+            <h2>Cara Kerja</h2>
+            <p class="muted">Sederhana, pribadi, dan langsung menghasilkan bahan diskusi.</p>
+          </div>
+          <div class="steps">
+            <article class="step-tile">
+              <div class="step-number">1</div>
+              <h3>Pilih Peran</h3>
+              <p class="muted">Calon suami atau calon istri mengisi nama dan identitas sesi.</p>
+            </article>
+            <article class="step-tile">
+              <div class="step-number">2</div>
+              <h3>Isi Couple ID</h3>
+              <p class="muted">Gunakan kode yang sama agar pasangan bisa membandingkan diskusi secara mandiri.</p>
+            </article>
+            <article class="step-tile">
+              <div class="step-number">3</div>
+              <h3>Lihat Analisis</h3>
+              <p class="muted">Dapatkan skor, flags, konflik potensial, topik wajib, dan kesepakatan pranikah.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="assessment" id="assessment">
+        <div class="form-card">
+          <div class="progress-shell">
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+            <strong id="progressText">Step 1 dari 3</strong>
+          </div>
+
+          <div id="setupStep">
+            <div class="kicker">Step 1</div>
+            <h2>Mulai dari identitas Anda</h2>
+            <p class="muted">Data hanya tersimpan di browser perangkat ini.</p>
+            <div class="role-picker" role="radiogroup" aria-label="Pilih peran">
+              <label class="role-option"><input type="radio" name="role" value="Calon Suami" checked> Calon Suami</label>
+              <label class="role-option"><input type="radio" name="role" value="Calon Istri"> Calon Istri</label>
+            </div>
+            <div class="form-grid">
+              <div>
+                <label for="nameInput">Nama</label>
+                <input id="nameInput" type="text" placeholder="Masukkan nama Anda" autocomplete="name" />
+              </div>
+              <div>
+                <label for="partnerInput">Nama Pasangan</label>
+                <input id="partnerInput" type="text" placeholder="Opsional" />
+              </div>
+            </div>
+            <div class="nav-row">
+              <button class="btn btn-secondary" type="button" data-back-landing>Kembali</button>
+              <button class="btn btn-primary" type="button" id="toCoupleStep">Lanjut</button>
+            </div>
+          </div>
+
+          <div id="coupleStep" hidden>
+            <div class="kicker">Step 2</div>
+            <h2>Masukkan Couple ID</h2>
+            <p class="muted">Buat kode sederhana, misalnya tanggal rencana menikah atau gabungan nama. Simpan kode ini untuk sesi diskusi berikutnya.</p>
+            <div class="form-grid">
+              <div>
+                <label for="coupleInput">Couple ID</label>
+                <input id="coupleInput" type="text" placeholder="Contoh: RAKA-NAYA-2026" />
+              </div>
+              <div>
+                <label for="livingInput">Rencana tempat tinggal</label>
+                <select id="livingInput">
+                  <option value="mandiri">Rumah sendiri/kontrak mandiri</option>
+                  <option value="orangtua">Tinggal dengan orang tua/mertua</option>
+                  <option value="belum">Belum dibahas</option>
+                </select>
+              </div>
+            </div>
+            <div class="nav-row">
+              <button class="btn btn-secondary" type="button" id="backToSetup">Kembali</button>
+              <button class="btn btn-primary" type="button" id="startQuestions">Mulai Asesmen</button>
+            </div>
+          </div>
+
+          <div id="questionStep" hidden>
+            <div class="question-meta">
+              <span class="pill" id="categoryPill">Keuangan</span>
+              <span class="pill" id="questionCounter">1/63</span>
+            </div>
+            <h2 class="question-text" id="questionText"></h2>
+            <div class="answers" id="answers"></div>
+            <div class="nav-row">
+              <button class="btn btn-secondary" type="button" id="prevQuestion">Kembali</button>
+              <button class="btn btn-primary" type="button" id="nextQuestion">Lanjut</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="result-page" id="resultPage">
+        <div class="result-wrap">
+          <div class="result-hero">
+            <div class="score-card">
+              <div class="kicker" style="color:#f7ddb0">Compatibility Score</div>
+              <span class="score-number" id="scoreNumber">0</span>
+              <div class="score-note" id="scoreNote"></div>
+            </div>
+            <div class="result-block">
+              <h2 id="resultTitle">Hasil Analisis</h2>
+              <p class="muted" id="resultSummary"></p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" type="button" id="saveResult">Simpan Hasil</button>
+                <button class="btn btn-secondary" type="button" id="retake">Ulangi Asesmen</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flag-grid">
+            <article class="flag-card green">
+              <h3>Green Flags</h3>
+              <ul id="greenFlags"></ul>
+            </article>
+            <article class="flag-card yellow">
+              <h3>Yellow Flags</h3>
+              <ul id="yellowFlags"></ul>
+            </article>
+            <article class="flag-card red">
+              <h3>Red Flags</h3>
+              <ul id="redFlags"></ul>
+            </article>
+          </div>
+
+          <div class="result-block result-section">
+            <div class="section-title">
+              <h2>Top 5 Konflik Potensial</h2>
+              <p class="muted">Prioritaskan percakapan pada area ini.</p>
+            </div>
+            <div class="conflict-grid" id="conflictGrid"></div>
+          </div>
+
+          <div class="result-block result-section">
+            <div class="section-title">
+              <h2>Topik Wajib Didiskusikan</h2>
+              <p class="muted">Gunakan sebagai agenda ngobrol berdua.</p>
+            </div>
+            <div class="topic-grid" id="topicGrid"></div>
+          </div>
+
+          <div class="agreement-card result-section">
+            <h2>Kesepakatan Pranikah</h2>
+            <p class="muted">Centang hal yang sudah disepakati, lalu tambahkan kesepakatan khusus pasangan Anda.</p>
+            <div class="agreement-list" id="agreementList"></div>
+            <div class="custom-agreement">
+              <input id="customAgreement" type="text" placeholder="Tulis kesepakatan baru..." />
+              <button class="btn btn-primary" type="button" id="addAgreement">Tambah</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>Butuh konsultasi lebih lanjut?</div>
+      <a href="tel:081775281832">081775281832</a>
+    </footer>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const questions = [
+      { c: "Keuangan", t: "Apakah pasangan wajib mengetahui seluruh penghasilan Anda?", k: "money", r: true },
+      { c: "Keuangan", t: "Apakah Anda siap membuat anggaran bulanan bersama setelah menikah?", k: "money", r: true },
+      { c: "Keuangan", t: "Apakah utang pribadi harus dibuka sebelum menikah?", k: "debt", r: true },
+      { c: "Keuangan", t: "Apakah membantu keluarga asal secara finansial perlu batas yang jelas?", k: "parentsMoney", r: true },
+      { c: "Keuangan", t: "Apakah pasangan boleh memiliki rekening pribadi yang tidak diketahui rinciannya?", k: "moneyPrivacy", r: false },
+      { c: "Keuangan", t: "Apakah pengeluaran besar harus dibahas berdua terlebih dahulu?", k: "money", r: true },
+      { c: "Keuangan", t: "Jika pasangan kehilangan pekerjaan, apakah Anda siap menyesuaikan gaya hidup sementara?", k: "careerMoney", r: true },
+
+      { c: "Anak dan Pengasuhan", t: "Apakah jumlah anak ideal harus disepakati sebelum menikah?", k: "children", r: true },
+      { c: "Anak dan Pengasuhan", t: "Apakah Anda ingin memiliki anak dalam dua tahun pertama pernikahan?", k: "childrenTiming", r: null },
+      { c: "Anak dan Pengasuhan", t: "Apakah metode disiplin anak harus dibahas sejak awal?", k: "parenting", r: true },
+      { c: "Anak dan Pengasuhan", t: "Apakah pendidikan agama anak harus menjadi prioritas utama?", k: "values", r: true },
+      { c: "Anak dan Pengasuhan", t: "Apakah pengasuhan anak harus dibagi setara antara suami dan istri?", k: "parenting", r: true },
+      { c: "Anak dan Pengasuhan", t: "Apakah keluarga besar boleh ikut menentukan cara mengasuh anak?", k: "parents", r: false },
+      { c: "Anak dan Pengasuhan", t: "Jika sulit punya anak, apakah Anda siap membahas pilihan medis atau adopsi bersama?", k: "children", r: true },
+
+      { c: "Karier", t: "Apakah istri tetap boleh bekerja setelah menikah?", k: "career", r: true },
+      { c: "Karier", t: "Apakah keputusan pindah kota karena karier harus disetujui pasangan?", k: "career", r: true },
+      { c: "Karier", t: "Apakah pekerjaan yang menyita malam dan akhir pekan berpotensi mengganggu pernikahan?", k: "career", r: true },
+      { c: "Karier", t: "Apakah salah satu pasangan boleh berhenti bekerja demi keluarga jika disepakati?", k: "career", r: true },
+      { c: "Karier", t: "Apakah ambisi karier pasangan perlu didukung meski membuat rutinitas berubah?", k: "career", r: true },
+      { c: "Karier", t: "Apakah pasangan perlu tahu rencana karier Anda dalam lima tahun ke depan?", k: "career", r: true },
+      { c: "Karier", t: "Apakah pembagian tugas rumah harus berubah ketika salah satu pasangan sedang sangat sibuk bekerja?", k: "career", r: true },
+
+      { c: "Hubungan Dengan Orang Tua", t: "Jika terjadi konflik dengan orang tua, apakah pasangan harus diprioritaskan?", k: "parents", r: true },
+      { c: "Hubungan Dengan Orang Tua", t: "Apakah tinggal bersama orang tua atau mertua perlu batas privasi yang tertulis jelas?", k: "living", r: true },
+      { c: "Hubungan Dengan Orang Tua", t: "Apakah kunjungan keluarga besar perlu dijadwalkan agar tidak mengganggu rumah tangga?", k: "parents", r: true },
+      { c: "Hubungan Dengan Orang Tua", t: "Apakah pasangan boleh menolak permintaan orang tua yang membebani rumah tangga?", k: "parents", r: true },
+      { c: "Hubungan Dengan Orang Tua", t: "Apakah bantuan uang kepada orang tua harus dibicarakan bersama?", k: "parentsMoney", r: true },
+      { c: "Hubungan Dengan Orang Tua", t: "Apakah orang tua boleh mengetahui detail konflik rumah tangga Anda?", k: "parentsPrivacy", r: false },
+      { c: "Hubungan Dengan Orang Tua", t: "Apakah batas campur tangan mertua harus dibahas sebelum menikah?", k: "parents", r: true },
+
+      { c: "Komunikasi", t: "Apakah konflik harus dibicarakan maksimal 24 jam setelah terjadi?", k: "communication", r: true },
+      { c: "Komunikasi", t: "Apakah Anda nyaman membicarakan kebutuhan emosional secara terbuka?", k: "communication", r: true },
+      { c: "Komunikasi", t: "Apakah diam berhari-hari saat marah bisa merusak hubungan?", k: "communication", r: true },
+      { c: "Komunikasi", t: "Apakah pasangan perlu tahu cara Anda ingin ditenangkan ketika stres?", k: "communication", r: true },
+      { c: "Komunikasi", t: "Apakah evaluasi hubungan secara rutin perlu dilakukan setelah menikah?", k: "communication", r: true },
+      { c: "Komunikasi", t: "Apakah bercanda soal kekurangan pasangan di depan orang lain termasuk batas yang tidak boleh dilanggar?", k: "communication", r: true },
+      { c: "Komunikasi", t: "Apakah keputusan besar harus menunggu sampai emosi sama-sama tenang?", k: "emotion", r: true },
+
+      { c: "Konflik dan Emosi", t: "Apakah meninggikan suara saat marah adalah hal yang tidak bisa diterima?", k: "emotion", r: true },
+      { c: "Konflik dan Emosi", t: "Apakah Anda bersedia meminta maaf lebih dulu ketika sadar menyakiti pasangan?", k: "emotion", r: true },
+      { c: "Konflik dan Emosi", t: "Apakah konflik lama tidak boleh terus dibawa ke pertengkaran baru?", k: "emotion", r: true },
+      { c: "Konflik dan Emosi", t: "Apakah pasangan perlu sepakat tentang hal yang dianggap kekerasan verbal?", k: "emotion", r: true },
+      { c: "Konflik dan Emosi", t: "Apakah pergi meninggalkan rumah saat bertengkar harus memiliki aturan yang jelas?", k: "emotion", r: true },
+      { c: "Konflik dan Emosi", t: "Apakah bantuan konselor keluarga boleh dipertimbangkan jika konflik berulang?", k: "emotion", r: true },
+      { c: "Konflik dan Emosi", t: "Apakah memaafkan berarti masalah tidak perlu dibahas lagi?", k: "emotionAvoid", r: false },
+
+      { c: "Kesetiaan dan Orang Ketiga", t: "Apakah pasangan boleh berteman dekat dengan mantan?", k: "ex", r: false },
+      { c: "Kesetiaan dan Orang Ketiga", t: "Apakah pasangan boleh curhat masalah rumah tangga kepada lawan jenis?", k: "thirdParty", r: false },
+      { c: "Kesetiaan dan Orang Ketiga", t: "Apakah batas pertemanan dengan lawan jenis harus disepakati jelas?", k: "thirdParty", r: true },
+      { c: "Kesetiaan dan Orang Ketiga", t: "Apakah chat pribadi yang intens dengan lawan jenis bisa dianggap melanggar komitmen?", k: "thirdParty", r: true },
+      { c: "Kesetiaan dan Orang Ketiga", t: "Apakah bertemu mantan berdua saja perlu izin pasangan?", k: "ex", r: true },
+      { c: "Kesetiaan dan Orang Ketiga", t: "Apakah flirting meski tanpa kontak fisik termasuk bentuk ketidaksetiaan?", k: "thirdParty", r: true },
+      { c: "Kesetiaan dan Orang Ketiga", t: "Apakah hubungan masa lalu perlu dibahas secukupnya sebelum menikah?", k: "ex", r: true },
+
+      { c: "Media Sosial dan Privasi", t: "Apakah password media sosial harus diketahui pasangan?", k: "password", r: null },
+      { c: "Media Sosial dan Privasi", t: "Apakah privasi ponsel tetap perlu dihormati setelah menikah?", k: "privacy", r: true },
+      { c: "Media Sosial dan Privasi", t: "Apakah unggahan tentang konflik rumah tangga di media sosial tidak boleh dilakukan?", k: "social", r: true },
+      { c: "Media Sosial dan Privasi", t: "Apakah mengikuti akun mantan perlu dibahas bersama?", k: "exSocial", r: true },
+      { c: "Media Sosial dan Privasi", t: "Apakah pasangan boleh mengecek ponsel tanpa izin?", k: "privacy", r: false },
+      { c: "Media Sosial dan Privasi", t: "Apakah batas konten yang boleh diposting tentang pasangan perlu disepakati?", k: "social", r: true },
+      { c: "Media Sosial dan Privasi", t: "Apakah pesan yang sengaja dihapus dari pasangan bisa mengurangi kepercayaan?", k: "privacy", r: true },
+
+      { c: "Agama dan Nilai Hidup", t: "Apakah ibadah atau praktik spiritual perlu menjadi bagian rutin keluarga?", k: "values", r: true },
+      { c: "Agama dan Nilai Hidup", t: "Apakah perbedaan pandangan agama atau nilai harus dibahas tanpa menghindar?", k: "values", r: true },
+      { c: "Agama dan Nilai Hidup", t: "Apakah gaya hidup konsumtif bertentangan dengan nilai keluarga yang Anda inginkan?", k: "valuesMoney", r: true },
+      { c: "Agama dan Nilai Hidup", t: "Apakah keputusan pendidikan anak harus selaras dengan nilai hidup keluarga?", k: "values", r: true },
+      { c: "Agama dan Nilai Hidup", t: "Apakah pasangan perlu sepakat tentang tradisi keluarga yang akan dipertahankan?", k: "values", r: true },
+      { c: "Agama dan Nilai Hidup", t: "Apakah Anda siap menghormati perbedaan kebiasaan pasangan yang tidak melanggar prinsip utama?", k: "values", r: true },
+      { c: "Agama dan Nilai Hidup", t: "Apakah tujuan pernikahan perlu dirumuskan bersama, bukan hanya mengikuti ekspektasi keluarga?", k: "values", r: true }
+    ];
+
+    const options = [
+      { label: "Sangat Setuju", value: 4 },
+      { label: "Setuju", value: 3 },
+      { label: "Tidak Setuju", value: 2 },
+      { label: "Sangat Tidak Setuju", value: 1 }
+    ];
+
+    const conflictInfo = {
+      Keuangan: { keys: ["money", "debt", "parentsMoney", "moneyPrivacy", "careerMoney", "valuesMoney"], cause: "Transparansi, utang, bantuan keluarga, dan batas pengeluaran belum cukup jelas.", risk: "Rasa tidak aman, curiga, atau konflik berulang saat kebutuhan meningkat.", solution: "Buat anggaran, batas bantuan keluarga, dan aturan pengeluaran besar." },
+      Mertua: { keys: ["parents", "parentsMoney", "parentsPrivacy", "living"], cause: "Batas keluarga besar, privasi, dan prioritas pasangan belum disepakati.", risk: "Pasangan merasa tidak dipilih atau rumah tangga terlalu mudah diintervensi.", solution: "Tetapkan batas kunjungan, bantuan, dan keputusan yang hanya milik pasangan." },
+      "Orang Ketiga": { keys: ["thirdParty", "ex", "exSocial"], cause: "Batas pertemanan, mantan, dan curhat ke lawan jenis masih abu-abu.", risk: "Kecemburuan, emotional affair, dan rusaknya kepercayaan.", solution: "Buat definisi setia, batas chat, batas bertemu, dan kanal curhat yang sehat." },
+      "Pengasuhan Anak": { keys: ["children", "childrenTiming", "parenting"], cause: "Jumlah anak, waktu punya anak, dan pola pengasuhan belum selaras.", risk: "Tekanan keluarga, kekecewaan, dan konflik saat anak hadir.", solution: "Bahas jumlah anak ideal, jadwal, pendidikan, disiplin, dan pembagian peran." },
+      Privasi: { keys: ["password", "privacy", "social"], cause: "Batas ponsel, password, unggahan, dan ruang pribadi belum jelas.", risk: "Kontrol berlebihan, rahasia, atau rasa tidak dipercaya.", solution: "Sepakati privasi sehat, transparansi yang wajar, dan larangan mengumbar konflik." },
+      Karier: { keys: ["career", "careerMoney"], cause: "Ambisi, jam kerja, pindah kota, dan pembagian tugas belum terencana.", risk: "Salah satu pihak merasa dikorbankan atau tidak didukung.", solution: "Buat peta karier lima tahun dan aturan adaptasi tugas rumah." },
+      Komunikasi: { keys: ["communication"], cause: "Cara membahas masalah, meminta maaf, dan memberi dukungan belum matang.", risk: "Masalah kecil menumpuk dan berubah menjadi jarak emosional.", solution: "Tentukan ritme evaluasi hubungan dan aturan ngobrol saat konflik." },
+      Emosi: { keys: ["emotion", "emotionAvoid"], cause: "Regulasi marah, silent treatment, dan pemulihan konflik perlu diperjelas.", risk: "Pertengkaran menjadi kasar, dingin, atau tidak pernah selesai.", solution: "Sepakati jeda sehat, larangan kekerasan verbal, dan kapan mencari bantuan." },
+      "Nilai Hidup": { keys: ["values", "valuesMoney"], cause: "Tujuan pernikahan, agama, tradisi, dan gaya hidup belum sepenuhnya searah.", risk: "Keputusan besar terasa seperti tarik-menarik prinsip.", solution: "Tulis nilai keluarga utama dan keputusan apa saja yang wajib mengikutinya." }
+    };
+
+    const requiredTopics = [
+      { title: "Jumlah Anak", keys: ["children", "childrenTiming"], prompt: "Tentukan jumlah anak ideal, waktu memiliki anak, dan langkah jika rencana tidak berjalan mulus." },
+      { title: "Keuangan", keys: ["money", "debt", "moneyPrivacy", "parentsMoney"], prompt: "Buka penghasilan, utang, tabungan, batas bantuan keluarga, dan aturan pengeluaran besar." },
+      { title: "Hubungan Dengan Mantan", keys: ["ex", "exSocial"], prompt: "Sepakati batas komunikasi, pertemuan, media sosial, dan informasi tentang masa lalu." },
+      { title: "Tempat Tinggal Setelah Menikah", keys: ["living", "parents"], prompt: "Putuskan tinggal mandiri atau bersama keluarga, lalu tulis batas privasi dan durasinya." },
+      { title: "Bantuan Kepada Orang Tua", keys: ["parentsMoney"], prompt: "Tetapkan nominal, kondisi darurat, dan cara menyampaikan batas kepada keluarga." },
+      { title: "Penggunaan Media Sosial", keys: ["password", "privacy", "social"], prompt: "Bahas password, privasi ponsel, unggahan pasangan, dan larangan membuka konflik di publik." }
+    ];
+
+    const defaultAgreements = [
+      "Tidak menyembunyikan utang",
+      "Konflik dibahas maksimal 24 jam",
+      "Tidak curhat masalah rumah tangga kepada lawan jenis",
+      "Pengeluaran besar harus dibahas bersama",
+      "Bantuan kepada orang tua disepakati nominal dan batasnya",
+      "Tidak mengunggah konflik rumah tangga di media sosial",
+      "Batas komunikasi dengan mantan dibahas secara terbuka",
+      "Keputusan tempat tinggal ditinjau ulang bersama secara berkala"
+    ];
+
+    const state = {
+      setupStep: 1,
+      current: 0,
+      profile: {},
+      answers: Array(questions.length).fill(null),
+      agreements: JSON.parse(localStorage.getItem("siapNikahAgreements") || "null") || defaultAgreements.map((text) => ({ text, checked: false }))
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    function toast(message) {
+      const el = $("#toast");
+      el.textContent = message;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 2200);
+    }
+
+    function showAssessment() {
+      $("#landing").classList.add("hidden");
+      $("#resultPage").classList.remove("active");
+      $("#assessment").classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      updateProgress();
+    }
+
+    function showLanding() {
+      $("#landing").classList.remove("hidden");
+      $("#assessment").classList.remove("active");
+      $("#resultPage").classList.remove("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateProgress() {
+      let percent = 8;
+      let label = "Step 1 dari 3";
+      if (!$("#coupleStep").hidden) { percent = 22; label = "Step 2 dari 3"; }
+      if (!$("#questionStep").hidden) {
+        percent = 28 + ((state.current + 1) / questions.length) * 70;
+        label = `Pertanyaan ${state.current + 1} dari ${questions.length}`;
+      }
+      $("#progressBar").style.width = `${Math.min(100, percent)}%`;
+      $("#progressText").textContent = label;
+    }
+
+    function setStep(step) {
+      $("#setupStep").hidden = step !== "setup";
+      $("#coupleStep").hidden = step !== "couple";
+      $("#questionStep").hidden = step !== "question";
+      updateProgress();
+    }
+
+    function renderQuestion() {
+      const q = questions[state.current];
+      $("#categoryPill").textContent = q.c;
+      $("#questionCounter").textContent = `${state.current + 1}/${questions.length}`;
+      $("#questionText").textContent = q.t;
+      $("#answers").innerHTML = options.map((option) => `
+        <label class="answer-option">
+          <input type="radio" name="answer" value="${option.value}" ${state.answers[state.current] === option.value ? "checked" : ""}>
+          <span>${option.label}</span>
+        </label>
+      `).join("");
+      $("#prevQuestion").textContent = state.current === 0 ? "Kembali" : "Sebelumnya";
+      $("#nextQuestion").textContent = state.current === questions.length - 1 ? "Lihat Hasil" : "Lanjut";
+      updateProgress();
+    }
+
+    function answerRisk(question, value) {
+      if (question.r === null) return 1.5;
+      const aligned = question.r ? value >= 3 : value <= 2;
+      if (aligned) return value === 4 || value === 1 ? 0 : 0.5;
+      return value === 3 || value === 2 ? 2 : 3.2;
+    }
+
+    function analyze() {
+      const risks = {};
+      const categoryScores = {};
+      questions.forEach((q, index) => {
+        const value = state.answers[index] || 2;
+        const risk = answerRisk(q, value);
+        risks[q.k] = (risks[q.k] || 0) + risk;
+        categoryScores[q.c] = categoryScores[q.c] || { risk: 0, count: 0 };
+        categoryScores[q.c].risk += risk;
+        categoryScores[q.c].count += 1;
+      });
+
+      if ($("#livingInput").value === "orangtua") risks.living = (risks.living || 0) + 3;
+      if ($("#livingInput").value === "belum") risks.living = (risks.living || 0) + 2.4;
+
+      const maxRisk = questions.length * 3.2 + 3;
+      const totalRisk = Object.values(risks).reduce((sum, value) => sum + value, 0);
+      const score = Math.max(38, Math.round(100 - (totalRisk / maxRisk) * 66));
+
+      const conflicts = Object.entries(conflictInfo).map(([name, info]) => {
+        const risk = info.keys.reduce((sum, key) => sum + (risks[key] || 0), 0);
+        return { name, risk, ...info };
+      }).sort((a, b) => b.risk - a.risk).slice(0, 5);
+
+      const sortedCategories = Object.entries(categoryScores)
+        .map(([name, value]) => ({ name, avg: value.risk / value.count }))
+        .sort((a, b) => a.avg - b.avg);
+
+      return { score, risks, conflicts, sortedCategories };
+    }
+
+    function li(items) {
+      return items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function renderResults() {
+      const result = analyze();
+      $("#assessment").classList.remove("active");
+      $("#resultPage").classList.add("active");
+      $("#landing").classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      $("#scoreNumber").textContent = result.score;
+      $("#scoreNote").textContent = result.score >= 82
+        ? "Fondasinya terlihat matang. Tetap bahas area kuning agar ekspektasi tidak menjadi asumsi."
+        : result.score >= 68
+          ? "Ada kecocokan yang baik, tetapi beberapa topik perlu dibuat lebih eksplisit sebelum menikah."
+          : "Ada beberapa perbedaan prinsip yang perlu dibahas serius sebelum mengambil keputusan besar.";
+
+      $("#resultTitle").textContent = `Hasil Analisis ${state.profile.name || "Anda"}`;
+      $("#resultSummary").textContent = `${state.profile.role || "Calon pasangan"} dengan Couple ID ${state.profile.couple || "-"} memiliki area kuat pada ${result.sortedCategories.slice(0, 2).map((x) => x.name).join(" dan ")}. Area yang perlu diskusi lebih dalam: ${result.conflicts.slice(0, 3).map((x) => x.name).join(", ")}.`;
+
+      $("#greenFlags").innerHTML = li([
+        `Kesadaran membahas ${result.sortedCategories[0]?.name || "nilai utama"} sebelum menikah sudah terbentuk.`,
+        "Pasangan memiliki bahan diskusi konkret, bukan hanya menebak isi pikiran.",
+        "Kesediaan membuat kesepakatan adalah fondasi komunikasi yang sehat."
+      ]);
+
+      $("#yellowFlags").innerHTML = li(result.conflicts.slice(2, 5).map((c) => `${c.name}: perlu aturan yang lebih jelas.`));
+      $("#redFlags").innerHTML = li(result.conflicts.slice(0, 2).map((c) => `${c.name}: risiko konflik tinggi bila tetap dibiarkan sebagai asumsi.`));
+
+      $("#conflictGrid").innerHTML = result.conflicts.map((c) => `
+        <article class="conflict-card">
+          <h3>${c.name}</h3>
+          <ul>
+            <li><strong>Penyebab:</strong> ${c.cause}</li>
+            <li><strong>Risiko:</strong> ${c.risk}</li>
+            <li><strong>Solusi:</strong> ${c.solution}</li>
+          </ul>
+        </article>
+      `).join("");
+
+      $("#topicGrid").innerHTML = requiredTopics.map((topic) => {
+        const level = topic.keys.reduce((sum, key) => sum + (result.risks[key] || 0), 0);
+        const priority = level > 7 ? "Prioritas tinggi" : level > 3 ? "Perlu dibahas" : "Konfirmasi kesepakatan";
+        return `
+          <article class="flag-card ${level > 7 ? "red" : level > 3 ? "yellow" : "green"}">
+            <h3>${topic.title}</h3>
+            <p class="muted"><strong>${priority}.</strong> ${topic.prompt}</p>
+          </article>
+        `;
+      }).join("");
+
+      renderAgreements();
+    }
+
+    function renderAgreements() {
+      $("#agreementList").innerHTML = state.agreements.map((item, index) => `
+        <label class="agreement-item">
+          <input type="checkbox" data-agreement="${index}" ${item.checked ? "checked" : ""}>
+          <span>${item.text}</span>
+        </label>
+      `).join("");
+      localStorage.setItem("siapNikahAgreements", JSON.stringify(state.agreements));
+    }
+
+    $$("[data-start]").forEach((button) => button.addEventListener("click", showAssessment));
+    $$("[data-scroll]").forEach((button) => button.addEventListener("click", () => {
+      document.querySelector(button.dataset.scroll).scrollIntoView({ behavior: "smooth" });
+    }));
+    $("[data-back-landing]").addEventListener("click", showLanding);
+
+    $("#toCoupleStep").addEventListener("click", () => {
+      const name = $("#nameInput").value.trim();
+      if (!name) return toast("Nama perlu diisi dulu.");
+      state.profile.name = name;
+      state.profile.partner = $("#partnerInput").value.trim();
+      state.profile.role = $("input[name='role']:checked").value;
+      setStep("couple");
+    });
+
+    $("#backToSetup").addEventListener("click", () => setStep("setup"));
+
+    $("#startQuestions").addEventListener("click", () => {
+      const couple = $("#coupleInput").value.trim();
+      if (!couple) return toast("Couple ID perlu diisi dulu.");
+      state.profile.couple = couple;
+      state.profile.living = $("#livingInput").value;
+      state.current = 0;
+      setStep("question");
+      renderQuestion();
+    });
+
+    $("#answers").addEventListener("change", (event) => {
+      state.answers[state.current] = Number(event.target.value);
+    });
+
+    $("#prevQuestion").addEventListener("click", () => {
+      if (state.current === 0) {
+        setStep("couple");
+        return;
+      }
+      state.current -= 1;
+      renderQuestion();
+    });
+
+    $("#nextQuestion").addEventListener("click", () => {
+      if (!state.answers[state.current]) return toast("Pilih salah satu jawaban dulu.");
+      if (state.current === questions.length - 1) {
+        renderResults();
+        return;
+      }
+      state.current += 1;
+      renderQuestion();
+    });
+
+    $("#agreementList").addEventListener("change", (event) => {
+      const index = Number(event.target.dataset.agreement);
+      state.agreements[index].checked = event.target.checked;
+      renderAgreements();
+    });
+
+    $("#addAgreement").addEventListener("click", () => {
+      const input = $("#customAgreement");
+      const text = input.value.trim();
+      if (!text) return toast("Tulis kesepakatan terlebih dahulu.");
+      state.agreements.push({ text, checked: false });
+      input.value = "";
+      renderAgreements();
+      toast("Kesepakatan ditambahkan.");
+    });
+
+    $("#saveResult").addEventListener("click", () => {
+      const saved = {
+        profile: state.profile,
+        answers: state.answers,
+        agreements: state.agreements,
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem(`siapNikahResult:${state.profile.couple || "default"}`, JSON.stringify(saved));
+      toast("Hasil tersimpan di browser ini.");
+    });
+
+    $("#retake").addEventListener("click", () => {
+      state.answers = Array(questions.length).fill(null);
+      state.current = 0;
+      showAssessment();
+      setStep("setup");
+    });
+
+    renderAgreements();
+  </script>
+</body>
+</html>
