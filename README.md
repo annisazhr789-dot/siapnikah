@@ -1,2 +1,27 @@
-# siapnikah
-Siap Nikah? adalah platform interaktif yang membantu pasangan mengukur kesiapan menikah melalui tes kecocokan, simulasi situasi rumah tangga, dan analisis hubungan. Temukan kesamaan visi, identifikasi perbedaan prinsip, serta dapatkan rekomendasi solusi untuk membangun fondasi pernikahan yang lebih sehat dan harmonis.
+# SIAP NIKAH?
+
+AI Couple Compatibility Platform untuk membantu calon pasangan memahami tingkat kecocokan, mengidentifikasi potensi konflik, dan membangun fondasi pernikahan yang lebih kuat sebelum menikah.
+
+## Fitur Utama
+
+- ❤️ Analisis Kecocokan Pasangan
+- 🚨 Pemetaan Risiko Rumah Tangga
+- 🤝 Kesepakatan Pranikah
+- 🎭 Simulasi Konflik Pernikahan
+- 📊 Compatibility Score
+- 📈 Radar Chart Perbandingan Pasangan
+- 🧠 AI Conflict Analyzer
+- 📋 Discussion Guide
+- 📄 Laporan dan Ringkasan Hasil
+
+## Layanan Tambahan
+
+- 💍 Template Persiapan Pernikahan
+- 🌐 Undangan Digital Premium
+- 🎥 Undangan Video / Gerak
+- 💻 Website Pernikahan Premium
+- 📞 Konsultasi Pranikah
+
+## Misi
+
+Membantu pasangan membahas hal-hal penting sebelum menikah agar dapat membangun hubungan yang lebih sehat, harmonis, dan berkelanjutan.
